@@ -52,9 +52,21 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.6",
+    "@emurgo/cardano-serialization-lib-nodejs-gc": "^15.0.1",
     "@types/node": "^22.13.4",
     "tsup": "^8.3.6",
     "typescript": "^5.7.3",
     "vitest": "^3.0.5"
+  },
+  "peerDependencies": {
+    "@emurgo/cardano-serialization-lib-nodejs-gc": ">=14.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@emurgo/cardano-serialization-lib-nodejs-gc": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "trynot": "^0.0.2"
   }
 }
