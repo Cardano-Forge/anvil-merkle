@@ -1,0 +1,60 @@
+{
+  "name": "@cardano-forge/merkle",
+  "description": "TypeScript utilities for working with Merkle trees",
+  "version": "0.0.0",
+  "author": "Cardano Forge",
+  "bugs": {
+    "url": "https://github.com/cardano-forge/anvil-merkle/issues"
+  },
+  "homepage": "https://github.com/cardano-forge/anvil-merkle",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cardano-forge/anvil-merkle.git"
+  },
+  "keywords": [
+    "javascript",
+    "typescript",
+    "typesafe",
+    "merkle",
+    "tree",
+    "anvil",
+    "cardano",
+    "forge",
+    "crypto"
+  ],
+  "sideEffects": false,
+  "files": [
+    "**"
+  ],
+  "main": "./index.js",
+  "module": "./index.mjs",
+  "types": "./index.d.mts",
+  "scripts": {
+    "build": "tsup",
+    "check": "tsc --noEmit",
+    "lint": "biome check --write .",
+    "test": "vitest --run --passWithNoTests",
+    "test:watch": "vitest --passWithNoTests",
+    "pre": "npm run lint && npm run check && npm run build && npm run test"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "require": {
+        "types": "./index.d.ts",
+        "require": "./index.js"
+      },
+      "import": {
+        "types": "./index.d.mts",
+        "import": "./index.mjs"
+      }
+    }
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.0.6",
+    "@types/node": "^22.13.4",
+    "tsup": "^8.3.6",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
+  }
+}
