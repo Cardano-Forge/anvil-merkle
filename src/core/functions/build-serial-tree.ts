@@ -1,6 +1,6 @@
 import type { Result } from "trynot";
+import type { MerkleTreeConfig, SerialMerkleTree } from "../types";
 import { buildTree } from "./build-tree";
-import type { MerkleTreeConfig, SerialMerkleTree } from "./types";
 
 export function buildSerialTree<TNode>(
   elements: number[],

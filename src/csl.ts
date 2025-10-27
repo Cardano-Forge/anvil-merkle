@@ -1,11 +1,14 @@
 import {
+  BigInt as CslBigInt,
   type DataHash,
   hash_plutus_data,
   PlutusData,
   PlutusList,
 } from "@emurgo/cardano-serialization-lib-nodejs-gc";
-import type { MerkleTreeConfig } from "../core/types";
-import { sortBuffers } from "../lib/sort-buffers";
+import { createMerkleTree } from "./core/factory/create-merkle-tree";
+import { createSerialMerkleTree } from "./core/factory/create-serial-merkle-tree";
+import type { MerkleTreeConfig } from "./core/types";
+import { sortBuffers } from "./internal/sort-buffers";
 
 export type CslMerkleTreeOpts<TElement> = {
   elementToPlutusData: (element: TElement) => PlutusData;
@@ -31,4 +34,23 @@ export function createCslMerkleTreeConfig<TElement>(
       return left.to_hex() === right.to_hex();
     },
   };
+}
+
+export function createCslMerkleTree<TElement>(
+  elements: TElement[],
+  opts: CslMerkleTreeOpts<TElement>,
+) {
+  return createMerkleTree(elements, createCslMerkleTreeConfig(opts));
+}
+
+export function createCslSerialMerkleTree(elements: number[]) {
+  return createSerialMerkleTree(
+    elements,
+    createCslMerkleTreeConfig({
+      elementToPlutusData: (element) => {
+        const int = CslBigInt.from_str(element.toString());
+        return PlutusData.new_integer(int);
+      },
+    }),
+  );
 }

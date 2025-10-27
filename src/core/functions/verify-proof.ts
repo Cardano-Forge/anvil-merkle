@@ -1,6 +1,6 @@
+import type { MerkleTree } from "../types";
 import { getLeaf } from "./get-leaf";
 import { getRoot } from "./get-root";
-import type { MerkleTree } from "./types";
 
 export function verifyProof<TNode, TElement>(
   tree: MerkleTree<TNode, TElement>,

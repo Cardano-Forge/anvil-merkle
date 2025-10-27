@@ -1,4 +1,4 @@
-import type { MerkleTree } from "./types";
+import type { MerkleTree } from "../types";
 
 /**
  * Gets the sibling of a node at a given index and layer.

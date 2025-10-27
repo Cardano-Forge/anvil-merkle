@@ -1,4 +1,4 @@
-import type { SerialMerkleTree, SerialProof } from "./types";
+import type { SerialMerkleTree, SerialProof } from "../types";
 
 export function getRangeProof<TNode>(
   tree: SerialMerkleTree<TNode>,
