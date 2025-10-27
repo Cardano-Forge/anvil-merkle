@@ -7,11 +7,11 @@ import { type CslMerkleTreeOpts, createCslMerkleTree } from "./csl";
 faker.seed(456);
 const elements = Array.from({ length: 10_000 }, () => faker.string.nanoid({ min: 5, max: 12 }));
 
-bench("CryptoMerkleTree", () => {
+bench("crypto tree", () => {
   createCryptoMerkleTree(elements);
 });
 
-bench("CslMerkleTree", () => {
+bench("csl tree", () => {
   const cslConfig: CslMerkleTreeOpts<string> = {
     elementToPlutusData: (element) => PlutusData.new_bytes(Buffer.from(element, "utf8")),
   };
