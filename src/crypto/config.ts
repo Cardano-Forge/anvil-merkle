@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
+import type { MerkleTreeConfig } from "../core/types";
 import { sortBuffers } from "../lib/sort-buffers";
-import type { MerkleTreeConfig } from "../tree";
 
 export function createCryptoMerkleTreeConfig<TElement>(): MerkleTreeConfig<Buffer, TElement> {
   return {
