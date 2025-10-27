@@ -6,7 +6,7 @@ export type MerkleTreeConfig<TNode, TElement> = {
   compareNodes(left: TNode, right: TNode): boolean;
 };
 
-export abstract class MerkleTree<TNode, TElement> {
+export class MerkleTree<TNode, TElement> {
   public readonly config: MerkleTreeConfig<TNode, TElement>;
   public readonly elements: TElement[];
   public readonly layers: TNode[][];
