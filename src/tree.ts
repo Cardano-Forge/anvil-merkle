@@ -2,7 +2,6 @@ import type { Result } from "trynot";
 
 export type MerkleTreeConfig<TNode, TElement> = {
   elementToNode(element: TElement): TNode;
-  getLeaf(element: TElement): { node: TNode; index: number } | undefined;
   combineNodes(left: TNode, right: TNode): TNode;
   compareNodes(left: TNode, right: TNode): boolean;
 };
@@ -45,13 +44,22 @@ export abstract class MerkleTree<TNode, TElement> {
     return this.layers[this.layers.length - 1][0];
   }
 
+  getLeaf(element: TElement): { node: TNode; index: number } | undefined {
+    const index = this.elements.indexOf(element);
+    if (index === -1) {
+      return undefined;
+    }
+    const node = this.leaves[index];
+    return { node, index };
+  }
+
   getSibling(index: number, layerIndex = 0): TNode | undefined {
     const siblingIndex = index % 2 === 0 ? index + 1 : index - 1;
     return this.layers[layerIndex][siblingIndex] ?? undefined;
   }
 
   getProof(element: TElement): Result<TNode[]> {
-    const leaf = this.config.getLeaf(element);
+    const leaf = this.getLeaf(element);
     if (!leaf) {
       return new Error("Element not found");
     }
@@ -68,7 +76,7 @@ export abstract class MerkleTree<TNode, TElement> {
   }
 
   verifyProof(element: TElement, proof: TNode[]): Result<boolean> {
-    const leaf = this.config.getLeaf(element);
+    const leaf = this.getLeaf(element);
     if (!leaf) {
       return new Error("Element not found");
     }
