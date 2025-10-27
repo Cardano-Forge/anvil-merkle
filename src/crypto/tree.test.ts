@@ -1,12 +1,12 @@
 import { faker } from "@faker-js/faker";
 import { unwrap } from "trynot";
 import { assert, expect, test } from "vitest";
-import { CryptoMerkleTree } from "./tree";
+import { createCryptoMerkleTree } from "./factory";
 
 test("CryptoMerkleTree validation", () => {
   faker.seed(123);
   const elements = Array.from({ length: 10 }, () => faker.string.nanoid({ min: 5, max: 12 }));
-  const tree = new CryptoMerkleTree(elements);
+  const tree = createCryptoMerkleTree(elements);
 
   const otherElement = faker.string.nanoid({ min: 5, max: 12 });
 

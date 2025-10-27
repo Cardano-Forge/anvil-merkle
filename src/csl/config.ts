@@ -4,8 +4,8 @@ import {
   PlutusData,
   PlutusList,
 } from "@emurgo/cardano-serialization-lib-nodejs-gc";
+import type { MerkleTreeConfig } from "../core/types";
 import { sortBuffers } from "../lib/sort-buffers";
-import type { MerkleTreeConfig } from "../tree";
 
 export type CslMerkleTreeOpts<TElement> = {
   elementToPlutusData: (element: TElement) => PlutusData;
