@@ -1,7 +1,7 @@
 import { isErr, isOk, type Result } from "trynot";
+import type { SerialMerkleTree, SerialProof } from "../types";
 import { getLeaf } from "./get-leaf";
 import { getRoot } from "./get-root";
-import type { SerialMerkleTree, SerialProof } from "./types";
 
 export function verifyRangeProof<TNode>(
   tree: SerialMerkleTree<TNode>,

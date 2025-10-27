@@ -1,4 +1,4 @@
-import type { MerkleTree, MerkleTreeConfig } from "./types";
+import type { MerkleTree, MerkleTreeConfig } from "../types";
 
 export function buildTree<TNode, TElement>(
   elements: TElement[],

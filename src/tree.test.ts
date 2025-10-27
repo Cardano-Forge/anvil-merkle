@@ -1,16 +1,14 @@
-import { BigInt as CslBigInt, PlutusData } from "@emurgo/cardano-serialization-lib-nodejs-gc";
+import { faker } from "@faker-js/faker";
 import { unwrap } from "trynot";
 import { assert, expect, test } from "vitest";
-import { createCslMerkleTree } from "./factory";
+import { createCryptoMerkleTree } from "./crypto";
 
-test("CslMerkleTree with number elements", () => {
-  const elements = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const tree = createCslMerkleTree<number>(elements, {
-    elementToPlutusData: (element) => {
-      const int = CslBigInt.from_str(element.toString());
-      return PlutusData.new_integer(int);
-    },
-  });
+test("CryptoMerkleTree validation", () => {
+  faker.seed(123);
+  const elements = Array.from({ length: 10 }, () => faker.string.nanoid({ min: 5, max: 12 }));
+  const tree = createCryptoMerkleTree(elements);
+
+  const otherElement = faker.string.nanoid({ min: 5, max: 12 });
 
   // Expect a single root node
   expect(tree.layers.at(-1)?.length).toBe(1);
@@ -18,16 +16,10 @@ test("CslMerkleTree with number elements", () => {
   // Expect number of leaves to match number of elements
   expect(tree.layers.at(0)?.length).toBe(elements.length);
 
-  expect(tree.getRoot().to_hex()).toBe(
-    "a78645409305a44fa8eed86c45cf2626d5fc464229abfe14ee39b963bc58e665",
-  );
+  expect(tree.getProof(otherElement)).toBeInstanceOf(Error);
 
-  expect(tree.getProof(-1)).toBeInstanceOf(Error);
-  expect(tree.getProof(11)).toBeInstanceOf(Error);
-
-  expect(tree.verifyProof(-1, [])).toBe(false);
-  expect(tree.verifyProof(11, [])).toBe(false);
-  expect(tree.verifyProof(10, [])).toBe(false);
+  expect(tree.verifyProof(otherElement, [])).toBe(false);
+  expect(tree.verifyProof(elements[0], [])).toBe(false);
 
   for (const element of elements) {
     const proof = unwrap(tree.getProof(element));

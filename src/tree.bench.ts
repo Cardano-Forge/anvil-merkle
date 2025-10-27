@@ -1,9 +1,8 @@
 import { PlutusData } from "@emurgo/cardano-serialization-lib-nodejs-gc";
 import { faker } from "@faker-js/faker";
 import { bench } from "vitest";
-import { createCryptoMerkleTree } from "./crypto/factory";
-import type { CslMerkleTreeOpts } from "./csl/config";
-import { createCslMerkleTree } from "./csl/factory";
+import { createCryptoMerkleTree } from "./crypto";
+import { type CslMerkleTreeOpts, createCslMerkleTree } from "./csl";
 
 faker.seed(456);
 const elements = Array.from({ length: 10_000 }, () => faker.string.nanoid({ min: 5, max: 12 }));

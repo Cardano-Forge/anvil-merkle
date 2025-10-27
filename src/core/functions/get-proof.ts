@@ -1,7 +1,7 @@
 import type { Result } from "trynot";
+import type { MerkleTree } from "../types";
 import { getLeaf } from "./get-leaf";
 import { getSibling } from "./get-sibling";
-import type { MerkleTree } from "./types";
 
 export function getProof<TNode, TElement>(
   tree: MerkleTree<TNode, TElement>,
