@@ -1,7 +1,7 @@
 import { BigInt as CslBigInt, PlutusData } from "@emurgo/cardano-serialization-lib-nodejs-gc";
 import { unwrap } from "trynot";
 import { assert, expect, test } from "vitest";
-import { CslMerkleTree } from "./csl";
+import { CslMerkleTree } from "./tree";
 
 test("CslMerkleTree with number elements", () => {
   const elements = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -36,11 +36,11 @@ test("CslMerkleTree with number elements", () => {
 
   for (let i = 0; i < elements.length - 1; i += 2) {
     const leftElement = elements[i];
-    const leftLeaf = tree.config.getLeaf(leftElement);
+    const leftLeaf = tree.getLeaf(leftElement);
     assert(leftLeaf);
 
     const rightElement = elements[i + 1];
-    const rightLeaf = tree.config.getLeaf(rightElement);
+    const rightLeaf = tree.getLeaf(rightElement);
     assert(rightLeaf);
 
     expect(tree.getSibling(leftLeaf.index)).toBe(rightLeaf.node);
