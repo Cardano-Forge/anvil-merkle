@@ -25,8 +25,8 @@ test("CslMerkleTree with number elements", () => {
   expect(tree.getProof(-1)).toBeInstanceOf(Error);
   expect(tree.getProof(11)).toBeInstanceOf(Error);
 
-  expect(tree.verifyProof(-1, [])).toBeInstanceOf(Error);
-  expect(tree.verifyProof(11, [])).toBeInstanceOf(Error);
+  expect(tree.verifyProof(-1, [])).toBe(false);
+  expect(tree.verifyProof(11, [])).toBe(false);
   expect(tree.verifyProof(10, [])).toBe(false);
 
   for (const element of elements) {
