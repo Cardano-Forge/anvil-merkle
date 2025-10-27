@@ -1,17 +1,15 @@
 import { isErr } from "trynot";
-import {
-  buildSerialTree,
-  buildTree,
-  getLeaf,
-  getLeaves,
-  getProof,
-  getRangeProof,
-  getRoot,
-  getSibling,
-  verifyProof,
-  verifyRangeProof,
-} from "./functions";
+import { buildSerialTree } from "./build-serial-tree";
+import { buildTree } from "./build-tree";
+import { getLeaf } from "./get-leaf";
+import { getLeaves } from "./get-leaves";
+import { getProof } from "./get-proof";
+import { getRangeProof } from "./get-range-proof";
+import { getRoot } from "./get-root";
+import { getSibling } from "./get-sibling";
 import type { MerkleTree, MerkleTreeConfig, Range, SerialProofs } from "./types";
+import { verifyProof } from "./verify-proof";
+import { verifyRangeProof } from "./verify-range-proof";
 
 export function createMerkleTree<TNode, TElement>(
   elements: TElement[],
