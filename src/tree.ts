@@ -75,10 +75,10 @@ export abstract class MerkleTree<TNode, TElement> {
     return proof;
   }
 
-  verifyProof(element: TElement, proof: TNode[]): Result<boolean> {
+  verifyProof(element: TElement, proof: TNode[]): boolean {
     const leaf = this.getLeaf(element);
     if (!leaf) {
-      return new Error("Element not found");
+      return false;
     }
     let node = leaf.node;
     for (const sibling of proof) {

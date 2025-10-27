@@ -18,7 +18,7 @@ test("CryptoMerkleTree validation", () => {
 
   expect(tree.getProof(otherElement)).toBeInstanceOf(Error);
 
-  expect(tree.verifyProof(otherElement, [])).toBeInstanceOf(Error);
+  expect(tree.verifyProof(otherElement, [])).toBe(false);
   expect(tree.verifyProof(elements[0], [])).toBe(false);
 
   for (const element of elements) {
