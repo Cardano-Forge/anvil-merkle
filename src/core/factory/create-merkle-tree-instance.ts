@@ -7,8 +7,11 @@ import { verifyProof } from "../functions/verify-proof";
 import type { MerkleTree } from "../types";
 
 export function createMerkleTreeInstance<TNode, TElement>(tree: MerkleTree<TNode, TElement>) {
+  const { config, elements, layers } = tree;
   return {
-    ...tree,
+    ...config,
+    elements,
+    layers,
     getLeaves: () => getLeaves(tree),
     getRoot: () => getRoot(tree),
     getLeaf: (element: TElement) => getLeaf(tree, element),
