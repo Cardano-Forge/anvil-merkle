@@ -2,7 +2,11 @@ import { copyFile } from "node:fs/promises";
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ["src", "!**/*.test.ts", "!**/*.bench.ts"],
+  entry: {
+    core: "./src/core/index.ts",
+    crypto: "./src/crypto.ts",
+    csl: "./src/csl.ts",
+  },
   dts: true,
   format: ["cjs", "esm"],
   clean: true,
