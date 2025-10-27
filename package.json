@@ -26,9 +26,9 @@
   "files": [
     "**"
   ],
-  "main": "./index.js",
-  "module": "./index.mjs",
-  "types": "./index.d.mts",
+  "main": "./core.js",
+  "module": "./core.mjs",
+  "types": "./core.d.mts",
   "scripts": {
     "build": "tsup",
     "check": "tsc --noEmit",
@@ -42,12 +42,32 @@
     "./package.json": "./package.json",
     ".": {
       "require": {
-        "types": "./index.d.ts",
-        "require": "./index.js"
+        "types": "./core.d.ts",
+        "require": "./core.js"
       },
       "import": {
-        "types": "./index.d.mts",
-        "import": "./index.mjs"
+        "types": "./core.d.mts",
+        "import": "./core.mjs"
+      }
+    },
+    "./crypto": {
+      "require": {
+        "types": "./crypto.d.ts",
+        "require": "./crypto.js"
+      },
+      "import": {
+        "types": "./crypto.d.mts",
+        "import": "./crypto.mjs"
+      }
+    },
+    "./csl": {
+      "require": {
+        "types": "./csl.d.ts",
+        "require": "./csl.js"
+      },
+      "import": {
+        "types": "./csl.d.mts",
+        "import": "./csl.mjs"
       }
     }
   },
