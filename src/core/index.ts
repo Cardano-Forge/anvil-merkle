@@ -19,6 +19,7 @@ export type {
   LayerIndex,
   MerkleTree,
   MerkleTreeConfig,
+  Range,
   SerialMerkleTree,
   SerialProof,
 } from "./types";
