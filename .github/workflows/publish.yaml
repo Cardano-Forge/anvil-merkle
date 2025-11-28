@@ -1,4 +1,4 @@
-name: Publish to GitHub Packages
+name: Publish
 on:
   workflow_dispatch:
   push:
@@ -47,8 +47,6 @@ jobs:
           node-version: 22
           registry-url: https://npm.pkg.github.com/
       - run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npm run build
       # Append -{{ ref_name }} to version number if on not on production branch
       - name: Add pre-release flag
@@ -58,15 +56,26 @@ jobs:
           full_version=$(echo "-${{ github.ref_name }}" | sed 's/\//-/g')
           jq --arg v "${full_version}" '.version += $v' package.json > tmp.json
           mv tmp.json package.json
-      - name: Publish to registry pre-release
-        if: github.ref_name != 'main'
-        working-directory: dist
-        run: npm publish --tag ${{ github.ref_name }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish to registry
         if: github.ref_name == 'main'
-        working-directory: dist
         run: npm publish
+        working-directory: dist
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish to registry pre-release
+        if: github.ref_name != 'main'
+        run: npm publish --tag ${{ github.ref_name }}
+        working-directory: dist
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: github.ref_name == 'main'
+        with:
+          tag_name: ${{ steps.update-versions.outputs.version }}
+          generate_release_notes: true
+          make_latest: "true"
+          prerelease: false
+          draft: false
