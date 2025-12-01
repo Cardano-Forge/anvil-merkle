@@ -1,10 +1,14 @@
 {
-  "name": "@cardano-forge/merkle",
+  "name": "@ada-anvil/merkle",
   "description": "TypeScript utilities for working with Merkle trees",
   "version": "0.0.0",
-  "author": "Cardano Forge",
+  "author": "Ada Anvil",
   "bugs": {
     "url": "https://github.com/cardano-forge/anvil-merkle/issues"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   },
   "homepage": "https://github.com/cardano-forge/anvil-merkle",
   "repository": {

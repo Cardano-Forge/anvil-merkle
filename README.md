@@ -1,11 +1,11 @@
-# `@cardano-forge/merkle`
+# `@ada-anvil/merkle`
 
 TypeScript utilities for working with Merkle trees.
 
 ## Installation
 
 ```bash
-npm install @cardano-forge/merkle
+npm install @ada-anvil/merkle
 ```
 
 ### Optional peer dependency
@@ -18,7 +18,7 @@ npm install @emurgo/cardano-serialization-lib-nodejs-gc
 
 ## Entry points
 
-### `@cardano-forge/merkle`
+### `@ada-anvil/merkle`
 
 Core functions and factory primitives. No peer dependencies.
 
@@ -28,10 +28,10 @@ import {
   buildTree,
   getProof,
   verifyProof,
-} from "@cardano-forge/merkle";
+} from "@ada-anvil/merkle";
 ```
 
-### `@cardano-forge/merkle/crypto`
+### `@ada-anvil/merkle/crypto`
 
 Merkle tree implementations using `node:crypto` (Node.js only).
 
@@ -39,10 +39,10 @@ Merkle tree implementations using `node:crypto` (Node.js only).
 import {
   createCryptoMerkleTree,
   createCryptoSerialMerkleTree,
-} from "@cardano-forge/merkle/crypto";
+} from "@ada-anvil/merkle/crypto";
 ```
 
-### `@cardano-forge/merkle/csl`
+### `@ada-anvil/merkle/csl`
 
 Merkle tree implementations using `@emurgo/cardano-serialization-lib-nodejs-gc`. Requires the Emurgo library as an optional peer dependency.
 
@@ -50,7 +50,7 @@ Merkle tree implementations using `@emurgo/cardano-serialization-lib-nodejs-gc`.
 import {
   createCslMerkleTree,
   createCslSerialMerkleTree,
-} from "@cardano-forge/merkle/csl";
+} from "@ada-anvil/merkle/csl";
 ```
 
 ## Usage
@@ -58,7 +58,7 @@ import {
 ### Merkle tree (arbitrary elements)
 
 ```typescript
-import { createCryptoMerkleTree } from "@cardano-forge/merkle/crypto";
+import { createCryptoMerkleTree } from "@ada-anvil/merkle/crypto";
 
 // Create tree from UUIDs
 const uuids = [
@@ -93,7 +93,7 @@ const sibling = tree.getSibling(leaf.index);
 ### Serial Merkle tree (consecutive integers)
 
 ```typescript
-import { createCryptoSerialMerkleTree } from "@cardano-forge/merkle/crypto";
+import { createCryptoSerialMerkleTree } from "@ada-anvil/merkle/crypto";
 
 // Create tree from consecutive integers
 const ids = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -124,7 +124,7 @@ if (tree) {
 Use the core library to build your own Merkle tree with custom hash functions:
 
 ```typescript
-import { createMerkleTree, type MerkleTreeConfig } from "@cardano-forge/merkle";
+import { createMerkleTree, type MerkleTreeConfig } from "@ada-anvil/merkle";
 
 type CustomNode = { hash: string };
 type CustomElement = { id: string; data: string };
