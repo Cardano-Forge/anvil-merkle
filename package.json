@@ -4,16 +4,16 @@
   "version": "0.0.0",
   "author": "Ada Anvil",
   "bugs": {
-    "url": "https://github.com/cardano-forge/anvil-merkle/issues"
+    "url": "https://github.com/Cardano-Forge/anvil-merkle/issues"
   },
   "license": "MIT",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "homepage": "https://github.com/cardano-forge/anvil-merkle",
+  "homepage": "https://github.com/Cardano-Forge/anvil-merkle",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cardano-forge/anvil-merkle.git"
+    "url": "git+https://github.com/Cardano-Forge/anvil-merkle.git"
   },
   "keywords": [
     "javascript",
