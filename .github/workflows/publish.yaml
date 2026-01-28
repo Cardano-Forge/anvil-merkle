@@ -38,6 +38,7 @@ jobs:
     needs: get-versions
     if: github.event_name != 'push'  || needs.get-versions.outputs.previous-version != needs.get-versions.outputs.updated-version
     permissions:
+      id-token: write
       packages: write
       contents: read
     steps:
@@ -46,6 +47,8 @@ jobs:
         with:
           node-version: 22
           registry-url: https://npm.pkg.github.com/
+      - name: Update npm
+        run: npm install -g npm@latest
       - run: npm ci
       - run: npm run build
       # Append -{{ ref_name }} to version number if on not on production branch
@@ -60,15 +63,11 @@ jobs:
         if: github.ref_name == 'main'
         run: npm publish
         working-directory: dist
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to registry pre-release
         if: github.ref_name != 'main'
         run: npm publish --tag ${{ github.ref_name }}
         working-directory: dist
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Release
         uses: softprops/action-gh-release@v2
