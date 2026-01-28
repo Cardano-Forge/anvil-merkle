@@ -36,7 +36,6 @@ async function main() {
     }
   }
   console.log(`[after] rewrote ${replaced} files`);
-
 }
 
 main();
