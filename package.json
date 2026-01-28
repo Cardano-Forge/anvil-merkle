@@ -34,7 +34,7 @@
   "module": "./core.mjs",
   "types": "./core.d.mts",
   "scripts": {
-    "build": "tsup",
+    "build": "tsx build.ts",
     "check": "tsc --noEmit",
     "lint": "biome check --write .",
     "bench": "vitest bench --run",
@@ -81,6 +81,7 @@
     "@faker-js/faker": "^10.1.0",
     "@types/node": "^22.13.4",
     "tsup": "^8.3.6",
+    "tsx": "^4.21.0",
     "typescript": "^5.7.3",
     "vitest": "^3.0.5"
   },
