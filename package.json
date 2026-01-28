@@ -1,7 +1,7 @@
 {
   "name": "@ada-anvil/merkle",
   "description": "TypeScript utilities for working with Merkle trees",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Ada Anvil",
   "bugs": {
     "url": "https://github.com/cardano-forge/anvil-merkle/issues"
